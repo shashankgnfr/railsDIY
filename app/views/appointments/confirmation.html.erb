@@ -1,0 +1,18 @@
+<% provide(:title, "Edit appointment") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@appointment) do |f| %> 
+
+      <div class="field">
+        <%= f.label "confirmed" %> <br />
+        <%= f.check_box :completed %> <br />
+      </div>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+
+  </div>
+</div>

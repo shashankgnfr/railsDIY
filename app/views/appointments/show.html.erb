@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Date:</strong>
+  <%= @appointment.date %>
+</p>
+
+
+<p>
+  <strong>Patient:</strong>
+  <%= @appointment.patient_id %>
+</p>
+
+<p>
+  <strong>Doctor ID:</strong>
+  <%= @appointment.doctor_id %>
+</p>
+
+<p>
+  <strong>Doctor Name:</strong>
+  <%= @doctor.name %>
+</p>
+<p>
+	<strong>Appoimtment Status:</strong>
+	<%= human_boolean(@appointment.completed) %>
+</p>

@@ -1,0 +1,13 @@
+<li id="appointment-<%= appointment.id %>">
+  <span class="patient"><%= link_to appointment.patient.name, appointment.patient %></span>
+  assigned to the given doctor:	
+  <span class="doctor"><%= link_to appointment.doctor.name, appointment.doctor %></span>
+  <br></br>
+  <span class="date"><%= appointment.date %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(appointment.created_at) %> ago.
+  </span>
+  <br></br>
+    Status: <%= human_boolean(appointment.completed) %>
+  
+</li>

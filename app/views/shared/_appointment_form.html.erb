@@ -1,0 +1,7 @@
+<%= form_for Appointment.new do |f| %>
+
+  <div class="field">
+    <%= f.time_field :date, placeholder: "select appointment slot..." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

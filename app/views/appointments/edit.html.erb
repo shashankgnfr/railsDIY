@@ -1,0 +1,29 @@
+<% provide(:title, "Edit appointment") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@appointment) do |f| %>
+      <%= f.label :date %>
+      <%= f.time_field :date, placeholder: "select appointment slot..." %>      
+
+
+      <p><%= f.label :doctor_id %>
+      Doctor: 
+      <%#= f.select :, Doctor.all %> 
+      <%#= select_tag "doctor_id", options_from_collection_for_select(Doctor.all, "id", "name"), include_blank: true %>
+      <%= f.number_field :doctor_id %>
+
+      </p>     
+
+      <div class="field">
+        <%= f.label "confirmed" %> <br />
+        <%= f.check_box :completed %> <br />
+      </div>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+
+  </div>
+</div>

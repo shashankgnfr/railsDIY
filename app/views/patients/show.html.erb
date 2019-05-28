@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @patient.name %>
+</p>
+
+
+<p>
+  <strong>Illness:</strong>
+  <%= @patient.id %>
+</p>
+
+<div class="col-md-8">
+  <% if @patient.appointments.any? %>
+    <h3>Appointments (<%= @patient.appointments.count %>)</h3>
+    <ol class="appointments">
+      <%= render @appointments %>
+    </ol>	
+   <% else %> 
+   <%= link_to 'Request an Appointment', new_appointment_path(patient_id: @patient.id) %>
+
+  <% end %>	
+</div>
+

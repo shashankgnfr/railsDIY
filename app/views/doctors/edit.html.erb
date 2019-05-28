@@ -1,0 +1,30 @@
+
+
+<% provide(:title, "Edit doctor") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+<%= form_for(@doctor) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :designation %>
+      <%= f.text_field :designation %>
+
+      <%= f.time_select :timing,
+			{ampm: true,
+			ignore_date: true,
+			start_hour: 10, 
+			end_hour: 18,
+			discard_minute: true,
+			prompt: true,
+			prompt: { hour: "Choose hr" }
+			} %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+
+  </div>
+</div>
