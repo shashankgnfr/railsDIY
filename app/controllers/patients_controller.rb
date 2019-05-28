@@ -1,5 +1,7 @@
 class PatientsController < ApplicationController
-before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :is_admin?
 
 
 
@@ -61,6 +63,15 @@ before_action :set_patient, only: [:show, :edit, :update, :destroy]
   end
 
   private 
+
+
+    def is_admin?
+      unless current_user.admin
+     # errors.add(:not_admin, "The post not belongs to you || not admin :) ")
+      redirect_to new_doctor_path
+      end
+    end
+
 
 
     def set_patient
