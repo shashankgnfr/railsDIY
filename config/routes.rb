@@ -1,23 +1,15 @@
 Rails.application.routes.draw do
+  resources :locations
   get 'dashboards/index'
-  # get 'doctors/new'
-  # post 'doctors/create'
-  # get 'doctors/show'
-
-  # get 'patients/new'
-  # post 'patients/create'
-  # get 'patients/show'
+ 
 
   patch 'appointments/update'
-
+  root to: "patients#new"
   devise_for :users
-  # devise_for :doctors
-  # devise_for :patients
-
+  resources :searches
   resources :doctors
   resources :patients
-
-  # resources :appointments 
+  resources :checkouts, only: [:new, :create, :show]
 
   resources :appointments do
     member do
@@ -26,9 +18,5 @@ Rails.application.routes.draw do
     end
   end
 
-
-  # namespace :dashboard do
-  #   root to: "dashboard#index"
-  # end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+ 
 end

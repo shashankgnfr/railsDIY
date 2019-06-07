@@ -11,6 +11,7 @@ $gray-medium-light: #eaeaea;
 
 body {
   padding-top: 60px;
+  background-image: url(whit.png);
 }
 
 section {
@@ -80,9 +81,8 @@ p {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  margin-top: 55px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
   color: #777;
 }
 
@@ -106,4 +106,13 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
+}
+
+
+.form-control{
+	width: 20%;
+}
+
+.circular-image {
+  border-radius:  1%;
 }

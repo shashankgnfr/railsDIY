@@ -1,0 +1,44 @@
+<h2>Sign up</h2>
+<div class="form-signin" align="center">
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+      <%= f.email_field :email, placeholder:"Email id", autofocus: true, class:"form-control" %> 
+      <small id="emailHelp" class="form-text text-muted">
+      We'll never share your email with anyone else.</small> 
+  </div>
+
+  <div class="field">
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, placeholder:"password", class:"form-control"  %> 
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_conirmation, placeholder:"re-enter password", class:"form-control"  %> 
+  </div>
+
+  <div class="field">
+    <div class="col-4">
+      <div class="form-check">
+        <label class="form-check-label" for="gridCheck1">Are you a doctor?
+          <%= f.check_box :admin %>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+
+<% end %>
+</div>
+
+
+
+
+   

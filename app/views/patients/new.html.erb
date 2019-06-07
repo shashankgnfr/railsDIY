@@ -1,21 +1,16 @@
 <% provide(:title, 'Patient record') %>
-<h1>Register</h1>
+<h3>Specify your name and illness</h3>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="form-group" align="left">    
     <%= form_for(@patient) do |f| %>
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class:"form-control" %>
 
       <%= f.label :number %>
-      <%= f.text_field :number %>
-
-
+      <%= f.text_field :number, class:"form-control"  %>
 
       <%= f.label :illness %>
-      <%= f.text_field :illness %>
-  
-      
+      <%= f.text_field :illness, class:"form-control"  %>  
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
 

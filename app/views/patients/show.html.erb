@@ -1,25 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @patient.name %>
-</p>
+<div class="table-responsive">          
+ <table class="table table-bordered"> 
+
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Patient ID</th>
+      <th>Illness</th>
+    </tr>
+  </thead>
+
+		<p>
+		  <td><%= @patient.name %></td>
+		</p>
 
 
-<p>
-  <strong>Illness:</strong>
-  <%= @patient.id %>
-</p>
+		<p>
+		  <td><%= @patient.id %></td>
+		</p>
 
+		<p>
+		  <td><%= @patient.illness %></td>
+		</p>
+	
+	</table>
+
+<br>
 <div class="col-md-8">
   <% if @patient.appointments.any? %>
     <h3>Appointments (<%= @patient.appointments.count %>)</h3>
     <ol class="appointments">
-      <%= render @appointments %>
+      <%= render @appointments %>	
     </ol>	
    <% else %> 
    <%= link_to 'Request an Appointment', new_appointment_path(patient_id: @patient.id) %>
-
   <% end %>	
 </div>
 

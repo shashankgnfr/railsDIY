@@ -1,16 +1,10 @@
 class Patient < ApplicationRecord
   has_many :appointments	
-  has_many :doctors, through: :appointments
-  #validates :name, presence: true	
-	validate :is_admin?
-  
+  has_many :doctors, through: :appointments, source: :doctor
+  validates :name, presence: true	
+  validates :number, length: { minimum: 7 }, numericality: { only_integer: true }
 
-
-  def is_admin?
-    unless User.first.admin
-      errors.add(:not_admin, "The post not belongs to you || not admin :) ")
-    end
-  end
-
-
+  # def current_appointments
+  # 	self.appointments.all
+  # end
 end

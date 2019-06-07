@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_085921) do
+ActiveRecord::Schema.define(version: 2019_05_30_110206) do
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "date"
     t.integer "doctor_id"
     t.integer "patient_id"
-    t.boolean "completed"
+    t.boolean "completed"   #set string
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["doctor_id", "patient_id", "created_at"], name: "index_appointments_on_doctor_id_and_patient_id_and_created_at"
@@ -25,9 +25,17 @@ ActiveRecord::Schema.define(version: 2019_05_28_085921) do
   end
 
   create_table "doctors", force: :cascade do |t|
-    t.string "name"
+    t.string "name" 
     t.string "designation"
-    t.integer "timing"
+    t.integer "timing"#str time end time
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,36 @@
+
+
+<p>
+  <strong>Address:</strong>
+  <%= @location.address %>
+</p>
+<p>
+  <strong>Latitude:</strong>
+  <%= @location.latitude %>
+</p>
+<p>
+  <strong>Longitude:</strong>
+  <%= @location.longitude %>
+</p>
+
+<h3>Nearby Hospitals</h3>
+<ul>
+<% for location in @location.nearbys%>
+  <li><%= link_to location.address, location %> (<%= location.distance %> miles)</li>
+
+<% end %>
+</ul>
+
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}" %>
+
+
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}& key= AIzaSyClRZf-rmDOlvObKaNFaZYRS4W_T7wOq3g", alt: "Map" %>
+
+
+<p>
+  <%= link_to "Edit", edit_location_path(@location) %> |
+  <%= link_to "Destroy", @location, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", locations_path %>
+</p>

@@ -2,7 +2,7 @@ class DoctorsController < ApplicationController
 before_action :set_doctor, only: [:show, :edit, :update, :destroy]
 
   def index
-    @doctors = Doctor.all
+    @doctors = Doctor.paginate(page: params[:page], per_page: 5)
   end
 
 

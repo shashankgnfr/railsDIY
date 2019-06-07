@@ -6,4 +6,7 @@ class Appointment < ApplicationRecord
   def confirmation(completed)
   	self.completed = completed
   end
+  
 end
+
+

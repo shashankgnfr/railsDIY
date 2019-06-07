@@ -1,7 +1,13 @@
 class AppointmentsController < ApplicationController
- before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+	before_action :is_admin?, only: [:index]
+
+
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.paginate(page: params[:page], per_page: 15)
+    if params[:search]
+    	@appointments = @appointments.where(["patient_id LIKE ?","%#{params[:search]}%"])
+    end
   end
 
 
@@ -13,6 +19,7 @@ class AppointmentsController < ApplicationController
   def new
     @patient = Patient.find(params[:patient_id])
     @appointment = @patient.appointments.new
+    @doctors = Doctor.paginate(page: params[:page], per_page: 5)
   end
 
   def edit
@@ -27,7 +34,6 @@ class AppointmentsController < ApplicationController
         format.html { redirect_to @appointment, notice: 'appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
-
         format.html { render :new }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
 	    end
@@ -47,20 +53,9 @@ class AppointmentsController < ApplicationController
     end
   end
 
-
-
   def confirmation
   	@appointment = Appointment.find(params[:id])
-  	@appointment.confirmation(@appointment.completed)
-    # respond_to do |format|
-    #   if @appointment.update(appointment_params)
-    #     format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @appointment }
-    #   else
-    #     format.html { render :confirmation }
-    #     format.json { render json: @appointment.errors, status: :unprocessable_entity }
-    #   end
-    # end  	
+  	@appointment.confirmation(@appointment.completed)	
   end	
 
   def destroy
@@ -70,17 +65,20 @@ class AppointmentsController < ApplicationController
 
   private 
 
+  def is_admin?
+    unless current_user.admin
+    	redirect_to patients_path
+    end
+  end
+
   def set_appointment
-    # @patient = Patient.find(params[:appointment][:patient_id])
-    # @appointment = @patient.appointments.find(params[:id])
     @appointment = Appointment.find(params[:id])
   	@doctor = @appointment.doctor
   end  
 
 	def appointment_params
-      params.require(:appointment).permit(:date, :completed, :doctor_id, :patient_id)
+    params.require(:appointment).permit(:date, :completed, :doctor_id, :patient_id)
   end
 
   
-
 end

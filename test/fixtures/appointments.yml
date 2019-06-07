@@ -1,13 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+user1:
   date: 2019-05-20 15:29:50
-  doctor: one
-  patient: one
-  completed: false
-
-two:
-  date: 2019-05-20 15:29:50
-  doctor: two
-  patient: two
+  doctor: doc1
+  patient: pat1
   completed: false

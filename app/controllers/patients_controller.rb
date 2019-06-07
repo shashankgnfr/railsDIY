@@ -6,13 +6,12 @@ class PatientsController < ApplicationController
 
 
   def index
-    @patients = Patient.all
+    @patients = Patient.paginate(page: params[:page], per_page: 10)
   end
 
   def show
   	@patient = Patient.find(params[:id])
     @appointments = @patient.appointments
-
   end
 
 
@@ -66,20 +65,17 @@ class PatientsController < ApplicationController
 
 
     def is_admin?
-      unless current_user.admin
-     # errors.add(:not_admin, "The post not belongs to you || not admin :) ")
+      if current_user.admin
       redirect_to new_doctor_path
       end
     end
-
-
 
     def set_patient
       @patient = Patient.find(params[:id])
     end
 
     def patient_params
-      params.require(:patient).permit(:name , :illness)
+      params.require(:patient).permit(:name , :illness, :number)
     end
 
 

@@ -4,7 +4,6 @@
   <%= @appointment.date %>
 </p>
 
-
 <p>
   <strong>Patient:</strong>
   <%= @appointment.patient_id %>
@@ -23,3 +22,21 @@
 	<strong>Appoimtment Status:</strong>
 	<%= human_boolean(@appointment.completed) %>
 </p>
+
+
+<div class="col-md-8">
+  <% if @appointment.completed == true %>
+    <ol class="appointments">
+    <%= link_to 'Make secure payment', new_checkout_path %>
+    </ol> 
+  <% end %> 
+</div>
+
+
+<% form_tag appointments_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+

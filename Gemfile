@@ -33,8 +33,23 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bootstrap-sass', '3.3.7'
+
+gem 'braintree', '~> 2.64'
+
+gem 'dotenv', '~> 2.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+gem 'geocoder', '~> 1.3', '>= 1.3.7'
+gem 'gmaps4rails', '~> 2.1', '>= 2.1.2'
+
+
+gem 'will_paginate',           '3.1.7'
+gem 'bootstrap-will_paginate', '1.0.0'
+
+
+gem 'minitest', group: :test
+gem 'minitest-reporters', group: :test
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

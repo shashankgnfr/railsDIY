@@ -13,15 +13,14 @@
     <div class="container">
       <nav>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Doctor",     new_doctor_path %></li>
-          <li><%= link_to "Patient",     new_patient_path %></li>
-       
+          <li><%= link_to "Doctor", new_doctor_path %></li>
+          <li><%= link_to "Patient", new_patient_path %></li>
+          <li><%= link_to "Find nearest hospital", new_location_path %></li>
+          <li><%= link_to "See Appointments", appointments_path %></li>
         </ul>
       </nav>
     </div>
   </header>
-
-
 
   <body>
 
@@ -33,12 +32,7 @@
     <p class="alert alert-danger"><%= alert %></p>
   <% end %>
 
-
-
   <nav>
-
-
-
     <p class="navbar-text pull-right">
     <% if user_signed_in? %>
       Logged in as <strong><%= current_user.email %></strong>.
@@ -49,10 +43,11 @@
       <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
     <% end %>
     </p>
-
   </nav>
-
-
     <%= yield %>
   </body>
+     <footer>
+       <p><%= image_tag("background5.png", size: "1310x310", :alt => "rss feed", :style => "float :center; border 1px solid #00000;", :class=> 'circular-image') %> </p>
+    </footer>
 </html>
+

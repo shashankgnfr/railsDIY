@@ -1,11 +1,17 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  number: 1
-  illness: MyString
+# # one:
+# #   name: MyString
+# #   number: 1
+# #   illness: MyString
 
-two:
-  name: MyString
-  number: 1
-  illness: MyString
+# # two:
+# #   name: MyString
+# #   number: 1
+# #   illness: MyString
+
+
+pat1:
+  name: "patient"
+  number: 1234
+  illness: "ill"
