@@ -1,12 +1,16 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-	before_action :is_admin?, only: [:index]
+#	before_action :is_admin?, only: [:index]
 
 
   def index
-    @appointments = Appointment.paginate(page: params[:page], per_page: 15)
+    #@appointments = Appointment.paginate(page: params[:page], per_page: 10)
+    @appointments = Appointment.where.not(id: nil).joins(:patient).paginate(page: params[:page], per_page: 10)
     if params[:search]
-    	@appointments = @appointments.where(["patient_id LIKE ?","%#{params[:search]}%"])
+    	#@appointments = @appointments.where(["patient_id LIKE ?","%#{params[:search]}%"])
+    	@appointments = @appointments.where(["patients.name LIKE ?","%#{params[:search]}%"])
+    	 #Appointment.where.not(id: nil).joins(:patient).where("patients.name = 'sass'")
+
     end
   end
 

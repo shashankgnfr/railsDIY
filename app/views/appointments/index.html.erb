@@ -1,4 +1,4 @@
- <th>Enter your ID here</th>
+ <th>Enter Patient name</th>
 <p id="notice"><%= notice %></p>
 <%= form_tag appointments_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search] %>
@@ -25,12 +25,14 @@
           
         <td><%= appointment.patient_id %></td>
         <td><%= appointment.patient.name %></td>
-        <td><%= appointment.date %></td>
-
+        <td><%= appointment.date%></td>
         <td><%= human_boolean(appointment.completed) %></td>
-        <td><%= link_to 'Show', appointment %></td>
-        <td><%= link_to 'Confirm',confirmation_appointment_path(appointment), method: :put %></td>        
-        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.admin? %>
+          <td><%= link_to 'Confirm',confirmation_appointment_path(appointment), method: :put %></td>        
+          <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td><%= link_to 'Show', appointment %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
