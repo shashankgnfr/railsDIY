@@ -6,15 +6,15 @@
     <%= form_for(@appointment) do |f| %>
      <strong>Time:</strong>
    
-      <%= f.time_field :date, placeholder: "select appointment slot..." %>      
-
-      <p><%= f.label :doctor_id %>
-      <%= f.number_field :doctor_id %>
-      </p>
-      <%= f.hidden_field :patient_id, value: params[:patient_id] %>
-
+      <%= f.time_field :date, placeholder: "select appointment slot..." %>    
+      <strong>Select doctor:</strong>
+      <%= f.select(:doctor_id, options_for_select(Doctor.all.pluck(:id))) %>
+    
+      <%= hidden_field_tag :patient_id, @patient.id %><br>
+       <p>
       <%= f.submit "Request an appointment", class: "btn btn-primary" %>
-
+      </p>
+      
     <% end %>
   </div>
 </div>
@@ -24,9 +24,9 @@
  <table class="table table-bordered"> 
   <thead>
     <tr>
-      <th>Name</th>
+      <th> Doctor Name</th>
       <th>ID</th>
-      <th>Timing</th>
+      <th>Specialization</th>
       <th colspan="3"></th> 
     </tr>
   </thead>
@@ -36,7 +36,7 @@
       <tr>
         <td><%= doctor.name %></td>
         <td><%= doctor.id %></td>
-        <td><%= doctor.timing %></td>
+        <td><%= doctor.designation %></td>
       </tr>
     <% end %>
   </tbody>

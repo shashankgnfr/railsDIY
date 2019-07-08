@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_05_30_110206) do
     t.datetime "date"
     t.integer "doctor_id"
     t.integer "patient_id"
-    t.boolean "completed"   #set string
+    t.boolean "completed"   
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["doctor_id", "patient_id", "created_at"], name: "index_appointments_on_doctor_id_and_patient_id_and_created_at"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_05_30_110206) do
   create_table "doctors", force: :cascade do |t|
     t.string "name" 
     t.string "designation"
-    t.integer "timing"#str time end time
+    t.integer "timing"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

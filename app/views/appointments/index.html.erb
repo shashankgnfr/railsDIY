@@ -2,7 +2,7 @@
 <p id="notice"><%= notice %></p>
 <%= form_tag appointments_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search Patient" %>
+  <%= submit_tag "Search Patient", class: "btn btn-primary" %>
 <% end %>
 <h1>All Appointments</h1>
 
@@ -15,39 +15,31 @@
        <th>Name</th>
        <th>Timing</th>
        <th>Status</th>
+       <th>Approve/Reject</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @appointments.each do |appointment| %>
-      <tr>
-          
+      <tr> 
         <td><%= appointment.patient_id %></td>
         <td><%= appointment.patient.name %></td>
-        <td><%= appointment.date%></td>
+        <td><%= appointment.date.try(:strftime, '%c') %></td>
         <td><%= human_boolean(appointment.completed) %></td>
         <% if current_user.admin? %>
-          <td><%= link_to 'Confirm',confirmation_appointment_path(appointment), method: :put %></td>        
-          <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Change Status',confirmation_appointment_path(appointment), method: :put %></td>  
+          <td><%= link_to 'Details', appointment %></td>      
         <% else %>
-          <td><%= link_to 'Show', appointment %></td>
+          <td><%= link_to 'Details', appointment %></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
+  <%= will_paginate %> 
 </table>
 
 <br>
-
-
-
-
-
-
-
-
-
 
 
 <%= link_to 'New Appointment', new_appointment_path %>

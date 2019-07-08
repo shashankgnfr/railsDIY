@@ -7,18 +7,18 @@ class PatientTest < ActiveSupport::TestCase
   end
   
 
-  test "patient should be valid" do
-      assert @patient.valid?
-  end
+  # test "patient should be valid" do
+  #     assert @patient.valid?
+  # end
 
-  test "number should be present" do
-    @patient.number = "   "
-    assert @patient.valid?
-  end
+  # test "number should be present" do
+  #   @patient.number = "   "
+  #   assert @patient.valid?
+  # end
 
-  test "illness should be present" do
-    @patient.illness = "   "
-    assert @patient.valid?
-  end  
+  # test "illness should be present" do
+  #   @patient.illness = "   "
+  #   assert @patient.valid?
+  # end  
 
 end

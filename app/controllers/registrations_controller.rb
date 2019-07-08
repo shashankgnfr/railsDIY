@@ -1,17 +1,15 @@
-
 class Devise::RegistrationsController < DeviseController
   prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
   prepend_before_action :set_minimum_password_length, only: [:new, :edit]
 
-  # GET /resource/sign_up
   def new
     build_resource
     yield resource if block_given?
     respond_with resource
   end
 
-  # POST /resource
+
   def create
     build_resource(sign_up_params)
 
@@ -34,14 +32,11 @@ class Devise::RegistrationsController < DeviseController
     end
   end
 
-  # GET /resource/edit
   def edit
     render :edit
   end
 
-  # PUT /resource
-  # We need to use a copy of the resource because we don't want to change
-  # the current user in place.
+
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)

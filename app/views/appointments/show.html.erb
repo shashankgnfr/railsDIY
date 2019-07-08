@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p>
   <strong>Date:</strong>
-  <%= @appointment.date %>
+  <%= @appointment.date.try(:strftime, '%c') %>
 </p>
 
 <p>
@@ -23,20 +23,14 @@
 	<%= human_boolean(@appointment.completed) %>
 </p>
 
-
 <div class="col-md-8">
-  <% if @appointment.completed == true %>
-    <ol class="appointments">
-    <%= link_to 'Make secure payment', new_checkout_path %>
-    </ol> 
+  <% unless current_user.admin? %>
+    <% if @appointment.completed == true %>
+      <ol class="appointments">
+      <%= link_to 'Make secure payment', new_checkout_path %>
+      </ol> 
+    <% end %> 
   <% end %> 
 </div>
 
-
-<% form_tag appointments_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
 

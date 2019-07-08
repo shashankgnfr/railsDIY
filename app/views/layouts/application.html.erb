@@ -18,6 +18,15 @@
           <li><%= link_to "Find nearest hospital", new_location_path %></li>
           <li><%= link_to "See Appointments", appointments_path %></li>
         </ul>
+          <ul class="nav navbar-nav navbar-left">
+            <% if user_signed_in? %>
+              <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |</li>  
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+            <% else %>
+              <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> </li>
+              <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+            <% end %>
+          </ul>    
       </nav>
     </div>
   </header>
@@ -36,18 +45,13 @@
     <p class="navbar-text pull-right">
     <% if user_signed_in? %>
       Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
     <% end %>
     </p>
   </nav>
     <%= yield %>
   </body>
-     <footer>
-       <p><%= image_tag("background5.png", size: "1310x310", :alt => "rss feed", :style => "float :center; border 1px solid #00000;", :class=> 'circular-image') %> </p>
+    <footer>
+      <p><%= image_tag("background5.png", size: "1310x310", :alt => "rss feed", :style => "float :center; border 1px solid #00000;", :class=> 'circular-image') %> </p>
     </footer>
 </html>
 

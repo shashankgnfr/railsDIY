@@ -1,10 +1,9 @@
-
 <% provide(:title, "Edit patient") %>
 <h1>Update your profile</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-<%= form_for(@patient) do |f| %>
+    <%= form_for(@patient) do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name %>
 
@@ -16,7 +15,6 @@
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
-
 
   </div>
 </div>
